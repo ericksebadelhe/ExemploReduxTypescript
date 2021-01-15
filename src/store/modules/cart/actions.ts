@@ -1,4 +1,4 @@
-import { markActionsOffline } from "redux-offline-queue";
+import { markActionsOffline, createOfflineActions } from "redux-offline-queue";
 import { ActionTypes, ICartItem, IProduct } from "./types";
 
 export function addProductToCartRequest(product: IProduct) {
@@ -42,11 +42,12 @@ export function finishShopping(items: ICartItem[]) {
     type: ActionTypes.finishShopping,
     payload: {
       items,
-    },
-    meta: {
-      retry: true
     }
   };
 }
 
-markActionsOffline(ActionTypes, [ActionTypes.finishShopping]);
+const Creators = {
+  finishShopping,
+}
+
+markActionsOffline(Creators, ['finishShopping']);

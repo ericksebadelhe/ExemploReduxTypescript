@@ -21,5 +21,3 @@ export interface ICartState {
   items: ICartItem[];
   failedStockCheck: number[];
 }
-
-// markActionsOffline(ActionTypes, [ActionTypes.finishShopping]);

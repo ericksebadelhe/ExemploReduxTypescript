@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { applyMiddleware, compose, createStore, Store } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import { persistStore, persistReducer, REHYDRATE } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import {
@@ -30,15 +30,9 @@ const middlewares = [];
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
-// const networkMiddleware = createNetworkMiddleware({
-//   queueReleaseThrottle: 200,
-// });
-
-// middlewares.push(networkMiddleware);
-middlewares.push(offlineMiddleware({ additionalTriggers: REHYDRATE }));
+middlewares.push(offlineMiddleware({}));
 middlewares.push(suspendSaga(sagaMiddleware));
 middlewares.push(consumeActionMiddleware());
-// middlewares.push(sagaMiddleware);
 
 const store = createStore(
   persistedReducer,

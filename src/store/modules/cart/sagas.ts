@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { all, call, select, spawn, take, takeLatest, put } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
-import * as NetInfo from '@react-native-community/netinfo';
+import NetInfo from '@react-native-community/netinfo';
 import { OFFLINE, ONLINE } from 'redux-offline-queue';
 import { IState } from '../..';
 import api from '../../../services/api';
@@ -57,14 +57,9 @@ function* handleExecuteFinishShopping({ payload }: FinishShoppingRequest) {
 
 export function* startWatchingNetworkConnectivity() {
 
-  const channel = eventChannel(emitter => {
-    const status = NetInfo.addEventListener((state) => {
-      emitter(state.isConnected);
-    });
-
-    return status;
-  });
-
+  const channel = eventChannel(emitter =>
+    NetInfo.addEventListener(state => emitter(state.isConnected))
+  );
 
   try {
     while (true) {
@@ -77,7 +72,6 @@ export function* startWatchingNetworkConnectivity() {
       }
     }
   } finally {
-    console.log('FINALLY')
     channel.close();
   }
 }
