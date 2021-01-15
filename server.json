@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Casaco maneiro",
+      "price": 290.9
+    },
+    {
+      "id": 2,
+      "title": "Óculos barato",
+      "price": 20.9
+    },
+    {
+      "id": 3,
+      "title": "Tênis da moda",
+      "price": 500
+    }
+  ],
+  "stock": [
+    {
+      "id": 1,
+      "quantity": 50
+    },
+    {
+      "id": 2,
+      "quantity": 100
+    },
+    {
+      "id": 3,
+      "quantity": 25
+    }
+  ],
+  "carts": [
+    [],
+    [],
+    [],
+    []
+  ]
+}
